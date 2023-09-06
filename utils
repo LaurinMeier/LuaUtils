@@ -1,0 +1,33 @@
+--toggles the output boolean between true and false, if it recieves a true in "x". This true can persist for multiple ticks.
+
+function toggle(x,name)if not nhto then nhto={}nhto.last={}nhto.tgl={}nhto.tgl[name]=false end if not nhto.last[name] and x then nhto.tgl[name] = not (nhto.tgl[name] or false) end nhto.last[name]=x return nhto.tgl[name]end
+
+--example:
+
+button = buttonStateOnUserInterface
+light = toggle(button, "light")
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+--gives the delta for a variable. Delta is the rate of change.
+
+function delta(x, name)
+    if not ksnfi then ksnfi = {} end
+    local delta = x-(ksnfi[name] or x)
+    ksnfi[name]=x
+    return delta
+end
+
+--one line
+function delta(x, name)if not ksnfi then ksnfi = {} end local delta = x-(ksnfi[name] or x)ksnfi[name]=x return delta end
+
+--example:
+
+x = x + 3.5
+deltaX = delta(x, "deltaOfX")
+print(deltaX) -- prints: 3.5
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+--future use:
+function AddComp(...)temp = vec()for i,v in ipairs({...}) do temp = Add(temp, v)end return temp end
